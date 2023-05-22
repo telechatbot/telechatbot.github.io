@@ -7,6 +7,15 @@ let offset = 0;
 // Set the timeout to a high value to avoid getting updates too frequently
 const timeout = 100000;
 
+
+window.addEventListener('load', () => {
+  //localStorage.setItem('chatId',"1221832086")
+  const storedChatId = localStorage.getItem('chatID');
+  if (storedChatId) {
+   window.location.href = '/telechatbot';
+  } 
+});
+
 // Create an XMLHttpRequest object
 const xhr = new XMLHttpRequest();
 
