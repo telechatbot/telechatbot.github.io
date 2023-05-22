@@ -3,9 +3,7 @@
 <head>
   <title>Send Data to Yourself</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
   <!-- Include Bootstrap CSS -->
-  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -18,36 +16,8 @@
   
   <input type="text" id="name" class="form-control text-center font-size-xl mr-5 " placeholder=" YourName" value="" style="font-size:50px;border-color:green;color:green;margin-top:95px;" onkeydown="handleEnterKey(event)"  spellcheck="false" max-width="690px">
   <p id="available" style="margin-bottom:90px;">note: Enter Your Telegram profile Name.</p>
-  
-  
+
   </div>
-  <div id="hide2" style="display:none;" >
-  
-  
-  
-  
-  
-    <h1>Send Text</h1>
-    <textarea id="text" class="form-control" rows="3" oninput="displayLength()" ></textarea>
-	<div id="length"></div>
-    <button onclick="sendtext()" class="btn btn-success mt-5 animated fadeIn zoomIn">Send Text</button> <h5 class="" id="result1" ></h5>
-    <hr>
-	
-    <h1>Send Photo</h1>
-    <input type="file" id="fileInput" class="form-control" multiple>
-    <button onclick="sendphoto()" class="btn btn-success mt-5 animated fadeIn zoomIn">Send Photo </button><h5 class="" id="result2" ></h5>
-    <hr>
-	
-	<h1>Send Video</h1>
-    <input type="file" id="videofileInput" class="form-control" multiple>
-    <button onclick="sendvideo()" class="btn btn-success mt-5 animated fadeIn zoomIn">Send Video </button><h5 class="" id="result3" ></h5>
-    <hr>
-	
-    <h1>Send Document</h1>
-    <input type="file" id="docfileInput" class="form-control" multiple>
-    <button onclick="senddoc()" class="btn btn-success mt-5 animated fadeIn zoomIn">Send Doc </button><h5 class="" id="result4" ></h5>
-   <hr>
-   </div>
    <h4>note:</h4>
 <div class="font-size-sm">
   If your name is not available pleace follow the below steps.
@@ -62,10 +32,7 @@
     <h5 class="text-center mb-0">Created by Dayanidi</h5>
   </div>
 </footer>
-
-
   </div>
-
-  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="telechatbot.js"></script>
 </body>
 </html>
