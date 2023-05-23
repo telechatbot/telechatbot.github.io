@@ -9,7 +9,7 @@ const timeout = 100000;
 
 window.addEventListener('load', () => {
   //localStorage.setItem('chatId',"1221832086")
-  const storedChatId = localStorage.getItem('chatID');
+  const storedChatId = localStorage.getItem('chatId');
   if (storedChatId) {
    window.location.href = '/telechatbot';
   } 
