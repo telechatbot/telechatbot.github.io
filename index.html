@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Send Data to Yourself</title>
+  <title>TeleChat Bot</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+<style>
+  .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.link {
+  text-decoration: none;
+}
+</style>
+  </head>
 
 <body>
   <!-- Add a Bootstrap container element -->
-  <div class="container mt-5 ">
-  <h1 class="text-success text-center mt-5 animated fadeInLeft">coming soon</h1>
+  <div class="container mt-3">
+  <h1 class="text-success text-center mt-5">TeleChat Bot</h1>
 
-  </div>
+  <input type="text" id="key" class="form-control text-center font-size-xl mr-5 " placeholder="Key" value="" style="font-size:50px;border-color:green;color:green;margin-top:95px;" onkeydown="handleEnterKey(event)"  spellcheck="false" max-width="690px" required>
+  <p id="available" style="margin-bottom:90px;">note: Enter Your Key.</p>
+    <div class="text-center">
+      <button onclick="login()" class="btn btn-success mb-5 px-5" >
+        Login
+      </button>
+    </div>
+    <div class="container">
+      <h4>Note:</h4>
+      <div class="font-size-sm">
+        <details>
+          <summary>If your key is <span class="text-primary">invalid</span> or you have <span class="text-primary">forgotten your key</span> or you are a <span class="text-primary">new user</span>, please follow the below steps.</summary>
+          <ol>
+            <br>
+            <li>Go to Telegram.</li>
+            <li>Search for <strong><a class="link" href="https://t.me/send_data_to_yourselfbot">@send_data_to_yourselfbot</a></strong> in your Telegram app.</li>
+            <li>Start the bot with <strong>/start</strong> command.</li>
+          </ol>
+        </details>
+      </div>
+    </div>
+    
+  <footer class="footer bg-dark text-white py-3 mt-5 mb-r">
+    <div class="container">
+      <h5 class="text-center mb-0">Created by <a href="https://dayanidiportfolio.github.io/" target="_blank">Dayanidi</a></h5>
+    </div>
+  </footer>
+  
   <script type="text/javascript" src="telechatbot.js"></script>
 </body>
 </html>
