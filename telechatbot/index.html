@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Website Chatbot</title>
+  <title>TeleChat Bot</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    body{
+      background-color: rgb(209, 208, 207);
+      color: #141414;
+    }
       .container {
           position: fixed;
           bottom: 10px;
@@ -14,25 +18,28 @@
           flex-direction: column;
           justify-content: flex-end;
           height: 100%;
+          background-color: rgb(209, 208, 207);
       }
     
       
       .header {
-        background-color: #b5daff;
+        background-color:  rgb(209, 208, 207);
         padding: 10px;
+        color:#4c4c4c;
       }
       
       .message-container {
         height: 100%;
         overflow-y: scroll;
-        background-color: #ffffff;
+        background-color: #f0f0f0;
         padding: 10px;
         display: flex;
         flex-direction: column;
+        border-radius: 1%;
       }
       
       .textmessage.received {
-        background-color: #e5e5ea;
+        background-color: #d9d9da;
         border-radius: 15px;
         padding: 10px;
         margin-bottom: 10px;
@@ -50,7 +57,7 @@
         margin-right: 5px;
         padding: 10px;
         border-radius: 50px 0px 50px 50px;
-        background-color: #f3f3f8;
+        background-color:  #c5c5c5;
         align-self: flex-end;
       }
 
@@ -127,7 +134,7 @@
 }
 
 .docmessage.sent{
-        background-color: #e5e5ea;
+        background-color:  #c5c5c5;
         border-radius: 15px;
         padding: 10px;
         margin-bottom: 10px;
@@ -211,15 +218,20 @@
     color: #ccc;
   }
 
-  /* Style for the close button */
-  .close {
-    color: rgb(255, 0, 0);
-    position: absolute;
-    top: -50px;
-    font-size: 35px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+/* Style for the close button */
+.close {
+  color: rgb(255, 255, 255);
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  cursor: pointer;
+  font-size: 60px;
+  border-radius: 40%;
+  margin-top: -15px;
+}
+
 
   .image-grid {
       display: grid;
@@ -231,6 +243,7 @@
     .image-grid img {
       width: 100%; /* Adjust the image size */
       height: auto; /* Preserve the aspect ratio */
+      margin-top: 5px;
     }
 
     .video-grid {
@@ -265,7 +278,8 @@
     transform: translate(0, 0);
   }
   50% {
-    transform: translate(20px, -20px);
+    transform: translate(40px, -40px);
+    rotate: -60deg;
   }
   100% {
     transform: translate(0, 0);
@@ -319,15 +333,15 @@ b{
 }
   </style>
 </head>
-<body>
+<body >
   
   
-  <div class="container">
-      <div class="header">
-   <!---- <button class="btn btn-link left"><i class="fas fa-bars"></i></button>--->
-    <h4 class="text-primary mt-2" id="chatid"><h4></h4></h4>
-  </div>
+  <div class="container" >
+     
+    <div class="header text-center">
+      <!---- <button class="btn btn-link left"><i class="fas fa-bars"></i></button>--->
     
+     </div>
 
   <!-- The modal -->
   <div id="imageModal" class="modal">
@@ -366,12 +380,14 @@ b{
     <button class="sendPhotos btn btn-success mr-5 ml-5 mb-5" onclick="sendVideos()">Send <i class="fas fa-paper-plane"></i></button>
 </div>
 </div>
-
-    <div class="message-container">
-      <div class="textmessage received">
-        <p>Hello, Nice to meet you</p>
-      </div>
-    </div>
+<div class="message-container">
+  <div class="textmessage received">
+    <p>Hello, Nice to meet you</p>
+  </div>
+  <div class="textmessage sent">
+    <p>Hello, Nice to meet you</p>
+  </div> 
+</div>
    
      <div class="addfilebox bg-secondary none">
       <div class="row">
@@ -395,7 +411,7 @@ b{
 <div class="input-container">
   <button class="btn btn-success rounded-circle mr-2" onclick="openfilebox()"><i id="addfileicon" class="fas fa-plus"></i></button>
   <textarea id="messageInput" class="form-control" placeholder="Type your message" maxlength="4096" oninput="autoExpandTextarea(this)"></textarea>
-<button class=" btn btn-white text-primary ml-2" onclick="sendMessage()"><i class="fas fa-paper-plane sendbtn"></i></button>
+<button class=" btn btn-white text-primary ml-2" onclick="sendMessage()" style="background-color: transparent; border: none;"><i class="fas fa-paper-plane sendbtn"></i></button>
 </div>
 
 </div>
@@ -409,7 +425,7 @@ b{
 
 window.addEventListener('load', () => {
   //localStorage.setItem('chatId',"1221832086")
-  const storedChatId = localStorage.getItem('chatID');
+  const storedChatId = sessionStorage.getItem('chatID');
   if (storedChatId) {
     chatId = storedChatId;
     document.getElementById("chatid").innerHTML=storedChatId;
@@ -442,6 +458,7 @@ window.addEventListener('load', () => {
   function closeVideoModal() {
     const modalVideo = document.getElementById("modelVideo").src="";
     showModal("videoModal", "none");
+
   }
   
   function closeSelectedImageModal() {
@@ -454,6 +471,7 @@ window.addEventListener('load', () => {
     const modal = document.getElementById("selectedVideoModel");
     showModal("selectedVideoModel", "none");
     document.getElementById("video-grid").innerHTML = "";
+    
   }
   
   function createTextMessageElement(message, isSent , iswait) {
@@ -653,7 +671,7 @@ window.addEventListener('load', () => {
   var modal = document.getElementById("selectedImageModel");
   var modalImage = document.getElementById("image-grid");
   modal.style.display = "block";
-
+  photos =[];
   const files = event.target.files;
   if (files && files.length > 0) {
     const selectedPhotos = Array.from(files).filter(file => file.type.startsWith('image/'));
@@ -680,6 +698,7 @@ window.addEventListener('load', () => {
   var modal = document.getElementById("selectedVideoModel");
   var modalvideo = document.getElementById("video-grid");
   modal.style.display = "block";
+  videos = [];
   const files = event.target.files;
   if (files && files.length > 0) {
     const selectedVideos = Array.from(files).filter(file => file.type.startsWith('video/'));
