@@ -30,8 +30,11 @@ window.addEventListener('load', () => {
 	  .then(data => {
 		console.log(data);
 		if (data.ok) {
+		   fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${1221832086}&text=Some one login teleChatBot ${chatId}`) .then(response => response.json())
+		  .then(data => {
 		  sessionStorage.setItem("chatID", chatId);
 		  location.reload()
+		  });
 		} else {
 		  if (data.error_code === 400) {
 			checked.style.color = "red";
