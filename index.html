@@ -1,59 +1,93 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>TeleChat Bot</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-}
-
-.link {
-  text-decoration: none;
-}
-</style>
-  </head>
+<link rel="stylesheet" href="/style.css">
+  <!-- SEO Content -->
+  <meta name="description" content="TeleChat Bot - A chat bot for telecommunication services.">
+  <meta name="keywords" content="telechat bot, chat bot, telecommunication bot, messaging bot">
+  <meta name="author" content="Dayanidi">
+</head>
 
 <body>
+
   <!-- Add a Bootstrap container element -->
   <div class="container mt-3">
-  <h1 class="text-success text-center mt-5">TeleChat Bot</h1>
-
-  <input type="text" id="key" class="form-control text-center font-size-xl mr-5 " placeholder="Key" value="" style="font-size:50px;border-color:green;color:green;margin-top:95px;" onkeydown="handleEnterKey(event)"  spellcheck="false" max-width="690px" required>
-  <p id="available" style="margin-bottom:90px;">note: Enter Your Key.</p>
-    <div class="text-center">
-      <button onclick="login()" class="btn btn-success mb-5 px-5" >
-        Login
-      </button>
-    </div>
-    <div class="container">
-      <h4>Note:</h4>
-      <div class="font-size-sm">
-        <details>
-          <summary>If your key is <span class="text-primary">invalid</span> or you have <span class="text-primary">forgotten your key</span> or you are a <span class="text-primary">new user</span>, please follow the below steps.</summary>
-          <ol>
-            <br>
-            <li>Go to Telegram.</li>
-            <li>Search for <strong><a class="link" href="https://t.me/send_data_to_yourselfbot">@send_data_to_yourselfbot</a></strong> in your Telegram app.</li>
-            <li>Start the bot with <strong>/start</strong> command.</li>
-          </ol>
-        </details>
+    <h1 class="text-success text-center">TeleChat Bot</h1>
+    <div class="row mt-5">
+      <div class="col-6 mb-5 text-secondary text-center">                  
+            <div class="">Users</div>
+            <span id="TotalUsers">loading...</span>
+      </div>
+      <div class="col-6 mb-5 text-secondary  text-center">
+            <div class="">Logins</div>
+            <span id="Totallogin">loading...</span>
       </div>
     </div>
-    
-  <footer class="footer bg-dark text-white py-3 mt-5 mb-r">
-    <div class="container">
-      <h5 class="text-center mb-0">Created by <a href="https://dayanidiportfolio.github.io/" target="_blank">Dayanidi</a></h5>
+    <div class="card-container">
+      <div class="card shadow-lg  bg-white rounded card-flip" id="card">
+        <div class="card-front">
+          <div class="card-body">
+            <div class="card-head text-right">
+              <button class="btn btn-primary"  id="changeSignUp">Sign up</button>
+            </div>
+            <input type="password" id="pin" class="form-control text-center font-size-xl mr-5" placeholder="Pin" value="" style="font-size:50px;border-color:green;color:green;margin-top:50px;"  spellcheck="false" required>
+            <p id="available" style="margin-bottom:40px;">Note: Enter Your Pin.</p>
+            <div class="text-center">
+              <button id="login" class="btn btn-success px-5">Login</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-body">
+            <div class="card-head text-right">
+              <button class="btn btn-primary" id="changeLogin">Login</button>
+            </div>
+            <input type="number" id="chatid" class="form-control text-center" placeholder="Chat ID" value="" style="border-color:green;color:green;margin-top:50px;" spellcheck="false"  required >
+            <p id="signUpMessage"style="margin-bottom: 10px;" ></p>
+            <input type="number" id="setpin" class="form-control text-center" placeholder="Set Pin" value="" style="border-color:green;color:green;margin-top:20px;" spellcheck="false" min="4" required>
+            <p style="margin-bottom: 30px;" id="setPinMessage">Note: Create your own PIN (minimum 4 digits)</p>
+            <div class="text-center">
+              <button id="signUp" class="btn btn-success px-5">Sign Up</button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
     </div>
+  </div>
+ 
+  <footer class="footer bg-dark text-white py-3 mt-5 mb-r">
+    <h5 class="text-center mb-0">Created by <a href="https://dayanidiportfolio.github.io/" target="_blank">Dayanidi</a></h5>
   </footer>
-  
-  <script type="text/javascript" src="telechatbot.js"></script>
+
+  <script type="module" src="/telechatbot.js"> </script>
+  <script type="module">
+    import { db, doc,  getDoc, updateDoc } from "/telechatbot/firebase.js";
+      // Read data from the collection
+      const readData = async () => {
+     const documentRef = doc(db, "login", "2vYvrMbgRB7ftIPWd6RU");
+
+   try {
+const documentSnapshot = await getDoc(documentRef);
+
+if (documentSnapshot.exists()) {
+ document.getElementById("Totallogin").innerHTML=documentSnapshot.data().totalLogin;
+ document.getElementById("TotalUsers").innerHTML=documentSnapshot.data().totalNumberOfUsers;
+} else {
+ console.log("Document does not exist");
+}
+} catch (error) {
+console.error("Error reading document:", error);
+}
+};
+readData();
+   </script>
 </body>
+
 </html>
