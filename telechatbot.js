@@ -114,7 +114,7 @@ const signUp = async () => {
   var setPinMessage = document.getElementById("setPinMessage");
   var key = document.getElementById("chatid").value;
   var signUpMessage = document.getElementById("signUpMessage");
-  if( setpin <999){
+  if( setpin.toString().length > 4){
 	setPinMessage.innerHTML = "Please Enter Pin Minmum 4 digits.";
 	setPinMessage.style.color = "red";
 return ;
