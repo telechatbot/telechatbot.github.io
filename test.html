@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TeleChat Bot</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <link rel="stylesheet" href="/style.css"> -->
+  <!-- SEO Content -->
+  <meta name="description" content="TeleChat Bot - A chat bot for telecommunication services.">
+  <meta name="keywords" content="telechat bot, chat bot, telecommunication bot, messaging bot">
+  <meta name="author" content="Innak">
+
+   <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      max-width: 800px;
+    }
+
+    .card-container {
+      perspective: 1000px;
+    }
+
+    .card-flip {
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+
+    .card-flip:hover {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      backface-visibility: hidden;
+    }
+
+    .footer {
+      padding: 20px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+   <!-- Add a Bootstrap container element -->
+  <div class="container mt-3">
+    <h1 class="text-success text-center">TeleChat Bot</h1>
+    <div class="row mt-5">
+      <div class="col-md-6 mb-5 text-secondary text-center">
+        <div class="h4">Users</div>
+        <span id="TotalUsers" class="h3">loading...</span>
+      </div>
+      <div class="col-md-6 mb-5 text-secondary text-center">
+        <div class="h4">Logins</div>
+        <span id="Totallogin" class="h3">loading...</span>
+      </div>
+    </div>
+    <div class="card-container">
+      <div class="card shadow-lg bg-white rounded card-flip" id="card">
+        <div class="card-front">
+          <div class="card-body">
+            <div class="card-head text-right">
+              <button class="btn btn-primary" id="changeSignUp">Sign up</button>
+            </div>
+            <input type="password" id="pin" class="form-control text-center font-size-xl mr-5" placeholder="Pin" style="font-size:50px;border-color:green;color:green;margin-top:50px;" spellcheck="false" required>
+            <p id="available" style="margin-bottom:40px;">Note: Enter Your Pin.</p>
+            <div class="text-center">
+              <button id="login" class="btn btn-success px-5">Login</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-body">
+            <div class="card-head text-right">
+              <button class="btn btn-primary" id="changeLogin">Login</button>
+            </div>
+            <input type="number" id="chatid" class="form-control text-center" placeholder="Chat ID" style="border-color:green;color:green;margin-top:50px;" spellcheck="false" required>
+            <a href="https://telegram.dog/Send_data_to_yourselfbot" target="_blank">Get My Chat ID</a>
+            <p id="signUpMessage" style="margin-bottom: 10px;"></p>
+            <input type="number" id="setpin" class="form-control text-center" placeholder="Set Pin" style="border-color:green;color:green;margin-top:20px;" spellcheck="false" min="4" required>
+            <p style="margin-bottom: 30px;" id="setPinMessage">Note: Create your own PIN (minimum 4 digits)</p>
+            <div class="text-center">
+              <button id="signUp" class="btn btn-success px-5">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <footer class="footer bg-dark text-white  mt-5 ">
+    <h5 class="text-center mb-0">Powered By <a href="https://instagram.com/innak_official/" target="_blank">innak</a></h5>
+  </footer>
+
+  
+  <!-- Bootstrap JS and other scripts if needed -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <script type="module" src="/telechatbot.js"> </script>
+  <script type="module">
+    import { db, doc,  getDoc, updateDoc } from "/telechatbot/firebase.js";
+      // Read data from the collection
+      const readData = async () => {
+     const documentRef = doc(db, "login", "2vYvrMbgRB7ftIPWd6RU");
+
+   try {
+const documentSnapshot = await getDoc(documentRef);
+
+if (documentSnapshot.exists()) {
+ document.getElementById("Totallogin").innerHTML=documentSnapshot.data().totalLogin;
+ document.getElementById("TotalUsers").innerHTML=documentSnapshot.data().totalNumberOfUsers;
+} else {
+ console.log("Document does not exist");
+}
+} catch (error) {
+console.error("Error reading document:", error);
+}
+};
+readData();
+   </script>
+</body>
+
+</html>
