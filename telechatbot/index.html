@@ -533,7 +533,7 @@ window.addEventListener('load', () => {
           if (data.ok) {
             displayTextMessage("Message received.", false);
           } else {
-            displayTextMessage("Message not received.", false);
+            displayTextMessage("Message not received. Site is Under maintenance", false);
           }
         })
         .catch(error => {
@@ -746,7 +746,7 @@ window.addEventListener('load', () => {
                 displayTextMessage('File size is too big.', false, false);
               } else {
                 deleteWaitMessage();
-                displayTextMessage('Failed to send the file.', false, false);
+                displayTextMessage('Failed to send the file. Site is Under maintenance', false, false);
               }
             })
             .catch(error => {
@@ -796,7 +796,7 @@ window.addEventListener('load', () => {
             displayTextMessage('Image Size is too big.', false, false);
           } else {
             deleteWaitMessage();
-            displayTextMessage('Failed to send photo.', false, false);
+            displayTextMessage('Failed to send photo. Site is Under maintenance', false, false);
           }
         })
         .catch(error => {
@@ -844,7 +844,7 @@ window.addEventListener('load', () => {
             displayTextMessage('Video Size is too big.', false, false);
           }else{
             deleteWaitMessage();
-            displayTextMessage(' Failed to send video.', false, false);
+            displayTextMessage(' Failed to send video. Site is Under maintenance', false, false);
           }
         })
         .catch(error => {
