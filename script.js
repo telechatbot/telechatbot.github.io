@@ -162,7 +162,7 @@ function checkID(){
         result.innerHTML='Text send Successfully.';
         console.log(data);
       } else {
-        result.innerHTML=data.description;
+        result.innerHTML=data.description + " Site is Under maintenance";
         result.className="text-danger";
       }
     })
@@ -196,7 +196,7 @@ function sendphoto() {
       console.log(data);
 	  if(data.ok == false)
 	  {
-	  result.innerHTML=data.description;
+	  result.innerHTML=data.description + " Site is Under maintenance";
 	  result.className="text-danger";
 	  }
 	  else{
@@ -241,7 +241,7 @@ fetch('https://api.telegram.org/bot'+token+'/sendVideo?chat_id='+id+'&caption=',
     console.log(data);
 	if(data.ok == false)
 	{
-	result.innerHTML=data.description;
+	result.innerHTML=data.description + " Site is Under maintenance";
 	  result.className="text-danger";
 	}
 	else{
@@ -286,7 +286,7 @@ fileInput.value = "";
       console.log(data);
 	  if(data.ok == false)
 	  {
-	  result.innerHTML=data.description;
+	  result.innerHTML=data.description + " Site is Under maintenance";
 	  result.className="text-danger";
 	  }
 	  else{
